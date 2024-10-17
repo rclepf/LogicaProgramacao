@@ -4,6 +4,7 @@ programa {
         cadeia fibonacci
         cadeia inverso
         inteiro a, b, temp
+        logico primo = verdadeiro
 
         escreva("Digite um número inteiro positivo: ")
         leia(numero)
@@ -15,7 +16,18 @@ programa {
         }
 
         // 1. Verificar se o número é primo
-        se (eh_primo(numero)) {
+        se (numero == 1) {
+            primo = falso
+        } senao {
+            para (i = 2; i * i <= numero; i++) {
+                se (numero % i == 0) {
+                    primo = falso
+                    pare // Sai do loop ao encontrar o primeiro divisor
+                }
+            }
+        }
+
+        se (primo) {
             escreva(numero, " é um número primo.\n")
         } senao {
             escreva(numero, " não é um número primo.\n")
@@ -59,17 +71,5 @@ programa {
             fatorial = fatorial * i
         }
         escreva("O fatorial do número ", numero_original, " é: ", fatorial, "\n")
-    }
-
-    funcao logico eh_primo(inteiro n) {  // Declare a função com tipo de retorno lógico
-        se (n <= 1) {
-            retorne falso
-        }
-        para (inteiro i = 2; i * i <= n; i++) {
-            se (n % i == 0) {
-                retorne falso
-            }
-        }
-        retorne verdadeiro
     }
 }
